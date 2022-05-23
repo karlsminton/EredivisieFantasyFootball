@@ -1,5 +1,6 @@
 import json
 from http import client
+from model import player
 
 # Credentials
 api_key = 'd721aa936e2644de9391789cf0b2c441'
@@ -17,6 +18,13 @@ string = response.read().decode('utf-8', 'ignore')
 decoder = json.JSONDecoder()
 api_response = decoder.decode(string)
 
+items = api_response['squad']
 
-if api_response['squad']:
-    print(api_response['squad'])
+for item in items:
+    player.Player(
+        item['name'],
+        item['position'],
+        item['dateOfBirth'],
+        item['nationality'],
+        item['shirtNumber']
+    )
