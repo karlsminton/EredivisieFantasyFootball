@@ -1,12 +1,14 @@
-from mysql import connector
-import player as Player
+from mariadb import connect
+import datetime
+import re
+# from positions import Positions
 
 
 class Repository:
     TABLE = 'players'
 
     def __init__(self):
-        self.connection = connector.connect(
+        self.connection = connect(
             user="eredivisie",
             password="eredivisie",
             host="localhost",
@@ -16,18 +18,27 @@ class Repository:
 
     def save(self, player):
         query = """
-        INSERT INTO %s 
+        INSERT INTO players 
         (name, position, date_of_birth, nationality, shirt_number)
-        VALUES (%s, %s, %s, %s, %s)
+        VALUES (?, ?, ?, ?, ?)
         """
 
+        # player_position = Positions[player.position.upper()]
+        # TODO get enum 'positions' working
+        positions = {'GOALKEEPER': 0, 'DEFENCE': 1, 'MIDFIELD': 2, 'OFFENCE': 3}
+        player_position = positions[player.position.upper()]
+
+        search = re.search('\d{4}\-\d{2}\-\d{2}', player.date_of_birth);
+        date = search.group(0)
+
+        dob = datetime.datetime.fromisoformat(date)
+
         values = (
-            self.TABLE,
             player.name,
-            player.position,
-            player.date_of_birth,
+            player_position,
+            dob,
             player.nationality,
-            player.shirt_number
+            player.shirt_number or 1
         )
 
         self.cursor.execute(query, values)

@@ -1,6 +1,7 @@
 import json
 from http import client
-from model import player
+from model.player import Player
+from model.repository import Repository
 
 # Credentials
 api_key = 'd721aa936e2644de9391789cf0b2c441'
@@ -21,10 +22,12 @@ api_response = decoder.decode(string)
 items = api_response['squad']
 
 for item in items:
-    player.Player(
+    plyr = Player(
         item['name'],
         item['position'],
         item['dateOfBirth'],
         item['nationality'],
         item['shirtNumber']
     )
+
+    Repository().save(plyr)
