@@ -1,7 +1,6 @@
 from mariadb import connect
 import datetime
 import re
-# from positions import Positions
 
 
 class Repository:
@@ -23,12 +22,11 @@ class Repository:
         VALUES (?, ?, ?, ?, ?)
         """
 
-        # player_position = Positions[player.position.upper()]
         # TODO get enum 'positions' working
         positions = {'GOALKEEPER': 0, 'DEFENCE': 1, 'MIDFIELD': 2, 'OFFENCE': 3}
         player_position = positions[player.position.upper()]
 
-        search = re.search('\d{4}\-\d{2}\-\d{2}', player.date_of_birth);
+        search = re.search('\d{4}\-\d{2}\-\d{2}', player.date_of_birth)
         date = search.group(0)
 
         dob = datetime.datetime.fromisoformat(date)
