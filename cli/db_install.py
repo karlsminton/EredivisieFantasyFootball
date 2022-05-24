@@ -8,9 +8,6 @@ connection = connector.connect(
 )
 cursor = connection.cursor()
 
-cursor.execute("DROP TABLE IF EXISTS `players`")
-connection.commit()
-
 # Football Players
 cursor.execute(
     """
@@ -25,9 +22,6 @@ cursor.execute(
     ) ENGINE=InnoDB
     """
 )
-connection.commit()
-
-cursor.execute("DROP TABLE IF EXISTS `clubs`")
 connection.commit()
 
 # Actual Football clubs
@@ -48,9 +42,6 @@ cursor.execute(
 )
 connection.commit()
 
-cursor.execute("DROP TABLE IF EXISTS `user_teams`")
-connection.commit()
-
 # User Team
 cursor.execute(
     """
@@ -64,9 +55,6 @@ cursor.execute(
     ) ENGINE=InnoDB
     """
 )
-connection.commit()
-
-cursor.execute("DROP TABLE IF EXISTS `users`")
 connection.commit()
 
 # Fantasy Eredivisie Players
