@@ -33,8 +33,8 @@ cursor.execute(
         `name` varchar(80) NOT NULL,
         `short_name` varchar(80) NOT NULL,
         `crest_url` varchar(256) NOT NULL,
-        `website` varchar(256) NOT NULL,
-        `venue` varchar(256) NOT NULL,
+        `website` varchar(256),
+        `venue` varchar(256),
         PRIMARY KEY (`club_id`),
         CONSTRAINT club UNIQUE (`api_id`, `name`, `short_name`)
     ) ENGINE=InnoDB
@@ -67,7 +67,7 @@ cursor.execute(
         `email` varchar(128) NOT NULL UNIQUE,
         `password` varchar(512) NOT NULL,
         `date_of_birth` date NOT NULL,
-        `user_team_id` int(11) NOT NULL,
+        `user_team_id` int(11),
         PRIMARY KEY (`user_id`),
         KEY `USERS_USER_TEAM_ID` (`user_team_id`), 
         CONSTRAINT `USERS_USER_TEAM_ID_USER_TEAMS_USER_TEAM_ID` 

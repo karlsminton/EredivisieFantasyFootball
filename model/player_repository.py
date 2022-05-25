@@ -3,7 +3,7 @@ import datetime
 import re
 
 
-class Repository:
+class PlayerRepository:
     TABLE = 'players'
 
     def __init__(self):

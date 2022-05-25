@@ -1,24 +1,12 @@
-import json
-from http import client
+from cron.request import Request
 from model.player import Player
-from model.repository import Repository
+from model.player_repository import PlayerRepository
 
 # Credentials
-api_key = 'd721aa936e2644de9391789cf0b2c441'
-url = 'api.football-data.org'
-headers = {'X-Auth-Token': api_key}
-params = None
+request = Request()
 
 # Get data from URL
-connection = client.HTTPConnection(url, '80')
-connection.request('GET', '/v2/teams/678', params, headers)
-response = connection.getresponse()
-string = response.read().decode('utf-8', 'ignore')
-
-# Transform data to JSON
-decoder = json.JSONDecoder()
-api_response = decoder.decode(string)
-
+api_response = request.get_from_endpoint('/v2/teams/678')
 items = api_response['squad']
 
 for item in items:
@@ -30,4 +18,4 @@ for item in items:
         item['shirtNumber']
     )
 
-    Repository().save(plyr)
+    PlayerRepository().save(plyr)
