@@ -46,8 +46,6 @@ class ClubRepository:
         self.connection.commit()
 
     def get_list(self):
-        query = 'SELECT * FROM ?'
-        values = (self.TABLE)
-
-        self.cursor.execute(query, values)
+        query = 'SELECT * FROM ' + self.TABLE
+        self.cursor.execute(query)
         return self.cursor.fetchall()
