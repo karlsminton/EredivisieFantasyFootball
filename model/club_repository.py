@@ -44,3 +44,10 @@ class ClubRepository:
         values = (self.TABLE, club_id)
         self.cursor.execute(query, values)
         self.connection.commit()
+
+    def get_list(self):
+        query = 'SELECT * FROM ?'
+        values = (self.TABLE)
+
+        self.cursor.execute(query, values)
+        return self.cursor.fetchall()

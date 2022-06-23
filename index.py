@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 from model.user import User
 from model.user_repository import UserRepository
+from model.club import Club
+from model.club_repository import ClubRepository
 
 app = Flask(__name__)
 
@@ -12,7 +14,7 @@ routes = [
 
 
 # TODO reformat into controllers
-@app.route("/")
+@app.route('/')
 def index():
     return jsonify(routes)
 
@@ -22,3 +24,9 @@ def register():
     user_data = request.get_json()
     User()
     UserRepository().save()
+
+
+@app.route('/clubs')
+def clubs():
+    clubs = ClubRepository.get_list()
+    return jsonify(clubs)
