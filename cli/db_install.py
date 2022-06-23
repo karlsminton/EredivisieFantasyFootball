@@ -32,7 +32,7 @@ cursor.execute(
         `api_id` int(5) NOT NULL,
         `name` varchar(80) NOT NULL,
         `short_name` varchar(80) NOT NULL,
-        `crest_url` varchar(256) NOT NULL,
+        `crest_url` varchar(256),
         `website` varchar(256),
         `venue` varchar(256),
         PRIMARY KEY (`club_id`),

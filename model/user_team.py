@@ -4,3 +4,4 @@ class UserTeam:
         self.score = score
         self.squad = squad
         self.bench = bench
+
