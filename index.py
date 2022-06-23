@@ -28,5 +28,6 @@ def register():
 
 @app.route('/clubs')
 def clubs():
-    clubs = ClubRepository.get_list()
-    return jsonify(clubs)
+    club_repository = ClubRepository()
+    clubs_list = club_repository.get_list()
+    return jsonify(clubs_list)
