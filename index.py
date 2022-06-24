@@ -32,6 +32,7 @@ def register():
     user_data = request.get_json()
     User()
     UserRepository().save()
+    return user_data
 
 
 @app.route('/clubs')
