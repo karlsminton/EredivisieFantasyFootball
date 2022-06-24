@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from model.user import User
 from model.user_repository import UserRepository
 from model.club_repository import ClubRepository
+from model.player_repository import PlayerRepository
 
 app = Flask(__name__)
 
@@ -17,6 +18,10 @@ routes = [
     {
         'route': '/clubs/<club_id>',
         'description': 'Endpoint for providing singular club data'
+    },
+    {
+        'route': '/players',
+        'description': 'Endpoint for getting player list'
     }
 ]
 
@@ -46,3 +51,10 @@ def club(club_id):
     club_repository = ClubRepository()
     club = club_repository.load_by_id(club_id)
     return jsonify(club)
+
+
+@app.route('/players')
+def players():
+    player_repository = PlayerRepository()
+    players_list = player_repository.get_list()
+    return jsonify(players_list)

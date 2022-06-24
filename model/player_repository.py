@@ -54,3 +54,9 @@ class PlayerRepository:
         values = (self.TABLE, player_id)
         self.cursor.execute(query, values)
         self.connection.commit()
+
+    def get_list(self):
+        query = 'SELECT * FROM ' + self.TABLE
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
+    
