@@ -37,7 +37,6 @@ class ClubRepository:
         values = (self.TABLE, club_id)
         self.cursor.execute(query, values)
         results = self.cursor.fetchone()
-        # loaded = Player.Player()
 
     def delete_by_id(self, club_id):
         query = 'DELETE FROM %s WHERE club_id = %s'
