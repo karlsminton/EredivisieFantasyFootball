@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, jsonify, request
 from model.user import User
 from model.user_repository import UserRepository
@@ -27,12 +28,16 @@ def index():
     return jsonify(routes)
 
 
-@app.route('/register', methods=["POST"])
+@app.route('/register', methods=['POST'])
 def register():
     user_data = request.get_json()
-    User()
-    UserRepository().save()
-    return user_data
+    user = User(user_data)
+    user_repository = UserRepository()
+    user_repository.save(user)
+
+    response = jsonify(user_data)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 @app.route('/clubs')
