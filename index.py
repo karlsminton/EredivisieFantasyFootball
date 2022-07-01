@@ -1,10 +1,12 @@
 import flask
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from model.user import User
 from model.user_repository import UserRepository
 from model.club_repository import ClubRepository
 
 app = Flask(__name__)
+CORS(app)
 
 routes = [
     {
@@ -36,7 +38,7 @@ def register():
     user_repository.save(user)
 
     response = jsonify(user_data)
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Origin', 'http://pwa.modgento.com')
     return response
 
 
