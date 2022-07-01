@@ -38,14 +38,11 @@ class UserRepository:
         self.connection.commit()
 
     def load_by_id(self, user_id):
-        query = 'SELECT * FROM %s WHERE user_id = %s'
-        values = (self.TABLE, user_id)
-        self.cursor.execute(query, values)
-        results = self.cursor.fetchone()
-        # return User()
+        query = 'SELECT * FROM ' + self.TABLE + ' WHERE user_id = %s'
+        self.cursor.execute(query, (user_id,))
+        return self.cursor.fetchone()
 
     def delete_by_id(self, user_id):
-        query = 'DELETE FROM %s WHERE user_id = %s'
-        values = (self.TABLE, user_id)
-        self.cursor.execute(query, values)
+        query = 'DELETE FROM ' + self.TABLE + ' WHERE user_id = %s'
+        self.cursor.execute(query, (user_id,))
         self.connection.commit()
