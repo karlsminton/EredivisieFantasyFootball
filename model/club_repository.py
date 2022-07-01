@@ -33,13 +33,13 @@ class ClubRepository:
         self.connection.commit()
 
     def load_by_id(self, club_id):
-        query = 'SELECT * FROM ' + self.TABLE + ' WHERE id=?'
-        self.cursor.execute(query, (club_id))
+        query = 'SELECT * FROM ' + self.TABLE + ' WHERE club_id = %s'
+        self.cursor.execute(query, (club_id,))
         return self.cursor.fetchone()
 
     def delete_by_id(self, club_id):
         query = 'DELETE FROM ' + self.TABLE + ' WHERE club_id = %s'
-        self.cursor.execute(query, (club_id))
+        self.cursor.execute(query, (club_id,))
         self.connection.commit()
 
     def get_list(self):
