@@ -1,10 +1,12 @@
 import flask
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from model.user import User
 from model.user_repository import UserRepository
 from model.club_repository import ClubRepository
 
 app = Flask(__name__)
+CORS(app)
 
 routes = [
     {
