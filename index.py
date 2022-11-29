@@ -36,7 +36,7 @@ def register():
     user_repository.save(user)
 
     response = jsonify(user_data)
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Origin', 'http://pwa.modgento.com')
     return response
 
 
